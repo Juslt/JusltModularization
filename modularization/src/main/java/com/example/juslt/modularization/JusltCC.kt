@@ -12,6 +12,7 @@ class JusltCC(private val moduleName:String){
     fun send(){
         ModuleManager.dispatch(moduleName)
     }
+
     //定义目标Module的action事件
 
 

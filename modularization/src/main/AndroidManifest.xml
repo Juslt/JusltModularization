@@ -1,2 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.juslt.modularization"/>
+          package="com.example.juslt.modularization">
+
+    <application>
+
+
+        <activity android:name=".remote.RemoteServiceActivity"
+                  android:exported="true"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                  android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="action.com.example.juslt.remote.provider"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+                android:name=".remote.RemoteServiceProvider"
+                android:authorities="${applicationId}.juslt.remote"
+                android:enabled="true"
+                android:exported="true"
+        />
+    </application>
+
+</manifest>

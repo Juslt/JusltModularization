@@ -14,5 +14,9 @@ class MainActivity : AppCompatActivity() {
             JusltCC("ModuleSecond")
                 .send()
         }
+
+        btn_send_module_a.setOnClickListener {
+            JusltCC("ModuleA").send()
+        }
     }
 }
