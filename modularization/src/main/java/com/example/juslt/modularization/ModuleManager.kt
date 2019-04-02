@@ -30,21 +30,28 @@ object ModuleManager{
         moduleMap[module.name] = module
     }
 
-    //向下分发事件
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-    fun dispatch(moduleName:String){
 
-        if(moduleMap.containsKey(moduleName)){
-            //本地处理Module
-            val module = moduleMap[moduleName]
-            module?.invoke()
+
+    //向下分发事件
+    fun dispatch(moduleName:String):ModuleMessageResult{
+        return if(isContainModule(moduleName)){
+            dispatchLocal(moduleName)
         }else{
             //请求远程Module处理
             RemoteModuleManager.dispatchRemote(moduleName)
+            return ModuleMessageResult.success(moduleName)
         }
     }
 
-    private fun dispatchLocal(){
+    //本地是否含有制定module
+    fun isContainModule(moduleName: String?):Boolean{
+        return moduleMap.containsKey(moduleName)
+    }
 
+
+    private fun dispatchLocal(moduleName: String):ModuleMessageResult{
+        //本地处理Module
+        val module = moduleMap[moduleName]
+       return module?.invoke()?:ModuleMessageResult.errorNotFound(moduleName)
     }
 }

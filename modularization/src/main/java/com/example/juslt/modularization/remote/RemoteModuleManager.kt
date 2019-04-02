@@ -2,8 +2,9 @@ package com.example.juslt.modularization.remote
 
 import android.content.Intent
 import android.net.Uri
-import com.example.juslt.modularization.IRemoteModuleService
+import android.os.Bundle
 import com.example.juslt.modularization.ModuleManager
+//import com.example.juslt.modularization.remote.RemoteModuleCall
 import java.lang.Exception
 import java.util.concurrent.ConcurrentHashMap
 
@@ -21,16 +22,27 @@ object RemoteModuleManager {
         }
 
         //IInterface.hasModule判断远程进程是否含有目标module
-       val iterator =  remoteServiceMap.iterator()
-        if(iterator.hasNext()){
+        val service = findRemoteServiceByModuleName(moduleName)
+
+        //调用远程进程的call方法
+
+        service?.call(RemoteModuleCall(moduleName, Bundle()))
+
+    }
+
+    private fun findRemoteServiceByModuleName(moduleName: String) :IRemoteModuleService?{
+        val iterator =  remoteServiceMap.iterator()
+        while(iterator.hasNext()){
             val entry =iterator.next()
+
+            //TODO try catch 可能抛出remote service 连接异常
             val moduleService = entry.value
-           if(moduleService.hasModule(moduleName)) {
-               //如果有Module，执行module 的call方法
-               moduleService.call()
-           }
+            if(moduleService.hasModule(moduleName)) {
+               return moduleService
+            }
         }
 
+        return null
     }
 
     private fun dispatch() {

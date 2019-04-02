@@ -11,8 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn_send_local_module.setOnClickListener {
-            JusltCC("ModuleSecond")
-                .send()
+            JusltCC("ModuleSecond").send()
         }
 
         btn_send_module_a.setOnClickListener {

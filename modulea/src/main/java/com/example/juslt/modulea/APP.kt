@@ -9,6 +9,9 @@ import com.example.juslt.modularization.ModuleManager
 class APP:Application(){
     override fun onCreate() {
         super.onCreate()
+        ModuleManager.init(this)
+        ModuleManager.register(ModuleA("ModuleA"))
         ModuleManager.updateContext(this)
+
     }
 }

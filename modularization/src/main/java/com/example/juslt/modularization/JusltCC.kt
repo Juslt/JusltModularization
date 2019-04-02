@@ -9,8 +9,8 @@ class JusltCC(private val moduleName:String){
     val bundle = Bundle()
 
     //发送消息
-    fun send(){
-        ModuleManager.dispatch(moduleName)
+    fun send():ModuleMessageResult{
+        return ModuleManager.dispatch(moduleName)
     }
 
     //定义目标Module的action事件

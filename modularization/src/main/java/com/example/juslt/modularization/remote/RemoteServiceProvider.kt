@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.Log
-import com.example.juslt.modularization.IRemoteModuleService
 
 /**
  * Created by Juslt on 2019/4/1
