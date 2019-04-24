@@ -3,6 +3,7 @@ package com.example.juslt.modularization.remote
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import com.example.juslt.modularization.ModuleManager
 //import com.example.juslt.modularization.remote.RemoteModuleCall
 import java.lang.Exception
@@ -26,7 +27,8 @@ object RemoteModuleManager {
 
         //调用远程进程的call方法
 
-        service?.call(RemoteModuleCall(moduleName, Bundle()))
+        val remoteModuleResult = service?.call(RemoteModuleCall(moduleName, Bundle()))
+       Log.i("===Remote Module Result", remoteModuleResult?.success.toString())
 
     }
 

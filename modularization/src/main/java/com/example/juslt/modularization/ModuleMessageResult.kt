@@ -5,7 +5,7 @@ import android.util.Log
 /**
  * Created by Juslt on 2019/3/29
  */
-class ModuleMessageResult(code: Int, message: String) {
+class ModuleMessageResult(val code: Int, val message: String) {
     companion object {
         val resultSuccess = 1
         val ERROR_NOT_FOUND =0

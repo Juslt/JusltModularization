@@ -13,13 +13,13 @@ object RemoteModuleService:IRemoteModuleService.Stub(){
         return   ModuleManager.isContainModule(moduleName)
     }
 
-    override fun call(call: RemoteModuleCall?) {
+    override fun call(call: RemoteModuleCall?):RemoteModuleResult {
         //获取ModuleName  和 目标bundle
 
         //接下来的流程和进程内Module调用相同
         Log.i("===","ModuleA call")
         val moduleMessageResult = JusltCC(call!!.moduleName).send()
-
+        return RemoteModuleResult(moduleMessageResult)
         //返回ModuleMessageResult给调用进程
     }
 }
